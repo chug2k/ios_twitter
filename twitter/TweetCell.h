@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TweetCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *userFullNameTextView;
+@property (weak, nonatomic) IBOutlet UILabel *screenNameTextView;
 
 @end

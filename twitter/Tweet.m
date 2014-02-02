@@ -13,6 +13,12 @@
 - (NSString *)text {
     return [self.data valueOrNilForKeyPath:@"text"];
 }
+- (NSString *)name {
+    return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"name"];
+}
+- (NSString *)screenName {
+    return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"screen_name"];
+}
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];
