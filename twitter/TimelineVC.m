@@ -88,6 +88,24 @@
     return cell;
 }
 
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Tweet *item = self.tweets[indexPath.row];
+    UITextView *textView = [[UITextView alloc] init];
+    int width = 237;
+    
+    [textView setAttributedText:[[NSAttributedString alloc] initWithString:item.text]];
+	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+												  options:NSStringDrawingUsesLineFragmentOrigin
+											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
+												  context:nil];
+    
+    return textRect.size.height + 40;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
