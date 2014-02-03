@@ -13,6 +13,7 @@
 @property (nonatomic, strong, readonly) NSString *text;
 @property (nonatomic, strong, readonly) NSString *screenName;
 @property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSString *profileImageURL;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

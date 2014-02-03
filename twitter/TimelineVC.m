@@ -8,6 +8,7 @@
 
 #import "TimelineVC.h"
 #import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TimelineVC ()
 
@@ -68,7 +69,6 @@
 {
     static NSString *CellIdentifier = @"TweetCell";
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     if(cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"TweetCell" owner:self options:nil];
         // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
@@ -76,9 +76,14 @@
     }
 
     Tweet *tweet = self.tweets[indexPath.row];
-    NSLog(@"Hello World %@", tweet);
     cell.userFullNameTextView.text = tweet.name;
     cell.screenNameTextView.text = tweet.screenName;
+    cell.tweetTextView.text = tweet.text;
+    
+    [cell.profileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:tweet.profileImageURL]]
+                                 placeholderImage:nil
+                                          success:nil
+                                          failure:nil];
     
     return cell;
 }

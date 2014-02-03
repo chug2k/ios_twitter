@@ -14,23 +14,52 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Michael Moran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1V-Vu-IiQ">
-                        <rect key="frame" x="32" y="10" width="114" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Michael Moran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1V-Vu-IiQ">
+                        <rect key="frame" x="70" y="10" width="59" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB1-qy-zMO">
-                        <rect key="frame" x="162" y="10" width="52" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="14h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijp-vK-fKG">
+                        <rect key="frame" x="286" y="10" width="58" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdE-Cj-8YI">
+                        <rect key="frame" x="14" y="10" width="48" height="48"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-Zu-UjI">
+                        <rect key="frame" x="161" y="10" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88s-NJ-NrN">
+                        <rect key="frame" x="70" y="32" width="237" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="XQy-Zu-UjI" firstAttribute="leading" secondItem="e1V-Vu-IiQ" secondAttribute="trailing" constant="7" id="CJn-ik-hGb"/>
+                    <constraint firstItem="88s-NJ-NrN" firstAttribute="top" secondItem="XQy-Zu-UjI" secondAttribute="bottom" constant="5" id="H3z-KR-vK1"/>
+                    <constraint firstItem="ijp-vK-fKG" firstAttribute="baseline" secondItem="XQy-Zu-UjI" secondAttribute="baseline" id="Yhk-oG-Bv7"/>
+                    <constraint firstAttribute="trailing" secondItem="ijp-vK-fKG" secondAttribute="trailing" constant="3" id="akA-28-Qdi"/>
+                    <constraint firstItem="ijp-vK-fKG" firstAttribute="baseline" secondItem="e1V-Vu-IiQ" secondAttribute="baseline" id="gPO-bf-qgq"/>
+                    <constraint firstItem="e1V-Vu-IiQ" firstAttribute="leading" secondItem="VdE-Cj-8YI" secondAttribute="trailing" constant="5" id="nhq-74-UaC"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="screenNameTextView" destination="xB1-qy-zMO" id="JDD-d2-FYb"/>
-                <outlet property="userFullNameTextView" destination="e1V-Vu-IiQ" id="Jn7-7U-CBl"/>
+                <outlet property="profileImageView" destination="VdE-Cj-8YI" id="DcX-pl-Nqo"/>
+                <outlet property="screenNameTextView" destination="XQy-Zu-UjI" id="Uvy-TT-TPd"/>
+                <outlet property="timeTextView" destination="ijp-vK-fKG" id="9Ah-7l-kVh"/>
+                <outlet property="tweetTextView" destination="88s-NJ-NrN" id="oGY-HL-45f"/>
+                <outlet property="userFullNameTextView" destination="e1V-Vu-IiQ" id="BXb-c1-16M"/>
             </connections>
         </tableViewCell>
     </objects>
