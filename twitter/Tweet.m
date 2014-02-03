@@ -22,6 +22,10 @@
 - (NSString *)profileImageURL {
     return [[self.data valueOrNilForKeyPath:@"user"] valueOrNilForKeyPath:@"profile_image_url"];
 }
+- (NSString *)created {
+    return [self.data valueOrNilForKeyPath:@"created_at"];
+}
+
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];
