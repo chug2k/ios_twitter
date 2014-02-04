@@ -10,12 +10,14 @@
 #import "TweetCell.h"
 #import "TweetVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "NEwTweetVC.h"
 
 @interface TimelineVC ()
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 
 - (void)onSignOutButton;
+- (void)onNewTweetButton;
 - (void)reload;
 
 @end
@@ -37,15 +39,22 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"New Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onNewTweetButton)];
     
     
+}
+- (void)onNewTweetButton
+{
+    NewTweetVC *newTweetVC = [[NewTweetVC alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newTweetVC];
+    
+    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,7 +146,6 @@
 
 - (void)reload {
     [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
         self.tweets = [Tweet tweetsWithArray:response];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

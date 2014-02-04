@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewTweetVC">
+            <connections>
+                <outlet property="nameTextLabel" destination="tal-gx-E7i" id="TT3-EA-btL"/>
+                <outlet property="profileImageView" destination="bP0-ia-afB" id="tuC-Ux-adb"/>
+                <outlet property="screennameTextLabel" destination="OVP-Ka-N5C" id="VXL-gO-HVG"/>
+                <outlet property="tweetTextView" destination="HjK-fX-j2K" id="11S-iq-cZQ"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bP0-ia-afB">
+                    <rect key="frame" x="20" y="15" width="48" height="48"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="VGl-Wy-xaV"/>
+                        <constraint firstAttribute="height" constant="48" id="xY4-gm-rWP"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timothy Lee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tal-gx-E7i">
+                    <rect key="frame" x="76" y="15" width="224" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="dLZ-o4-8Hi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVP-Ka-N5C">
+                    <rect key="frame" x="76" y="36" width="215" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="HIE-Pu-ZRQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is 140 characters, yo dawg. " translatesAutoresizingMaskIntoConstraints="NO" id="HjK-fX-j2K">
+                    <rect key="frame" x="20" y="71" width="290" height="447"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bP0-ia-afB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" symbolic="YES" id="9Rg-0A-MO8"/>
+                <constraint firstItem="tal-gx-E7i" firstAttribute="top" secondItem="bP0-ia-afB" secondAttribute="top" id="APB-KS-6Ve"/>
+                <constraint firstItem="tal-gx-E7i" firstAttribute="leading" secondItem="bP0-ia-afB" secondAttribute="trailing" constant="8" symbolic="YES" id="Lfc-kv-Uyf"/>
+                <constraint firstItem="OVP-Ka-N5C" firstAttribute="leading" secondItem="bP0-ia-afB" secondAttribute="trailing" constant="8" symbolic="YES" id="WEt-mi-Gck"/>
+                <constraint firstAttribute="trailing" secondItem="OVP-Ka-N5C" secondAttribute="trailing" constant="29" id="Zx4-6Q-6IG"/>
+                <constraint firstItem="bP0-ia-afB" firstAttribute="top" secondItem="1" secondAttribute="top" constant="15" id="bDn-sQ-E3y"/>
+                <constraint firstItem="HjK-fX-j2K" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="g4f-qO-fWw"/>
+                <constraint firstAttribute="trailing" secondItem="HjK-fX-j2K" secondAttribute="trailing" constant="10" id="j5s-zd-ueJ"/>
+                <constraint firstItem="HjK-fX-j2K" firstAttribute="top" secondItem="bP0-ia-afB" secondAttribute="bottom" constant="8" id="oPs-2J-QS2"/>
+                <constraint firstItem="OVP-Ka-N5C" firstAttribute="top" secondItem="tal-gx-E7i" secondAttribute="bottom" id="t7f-5U-Kzr"/>
+                <constraint firstAttribute="trailing" secondItem="tal-gx-E7i" secondAttribute="trailing" constant="20" symbolic="YES" id="u7m-ef-1Ga"/>
+                <constraint firstAttribute="bottom" secondItem="HjK-fX-j2K" secondAttribute="bottom" constant="50" id="zmi-Un-RHg"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
