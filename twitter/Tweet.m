@@ -25,6 +25,9 @@
 - (NSString *)created {
     return [self.data valueOrNilForKeyPath:@"created_at"];
 }
+- (NSString *)retweetCount {
+    return [self.data valueOrNilForKeyPath:@"retweet_count"];
+}
 
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {

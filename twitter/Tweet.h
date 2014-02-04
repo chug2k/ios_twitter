@@ -15,7 +15,7 @@
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *profileImageURL;
 @property (nonatomic, strong, readonly) NSString *created;
-
+@property (nonatomic, strong, readonly) NSString *retweetCount;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 
