@@ -9,6 +9,7 @@
 #import "NewTweetVC.h"
 #import "User.h"
 #import "UIImageView+AFNetworking.h"
+#import "MPTextView.h"
 
 @interface NewTweetVC ()
 - (void) onBackButton;
@@ -18,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screennameTextLabel;
 
-@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet MPTextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet UILabel *charCountLabel;
 
 @end
 
@@ -36,8 +38,6 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetButton)];
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
-
-        
     }
 
     return self;
@@ -79,7 +79,9 @@
                                  placeholderImage:nil
                                           success:nil
                                           failure:nil];
-    
+    self.tweetTextView.placeholderText = @"What's your status?";
+    self.tweetTextView.delegate = self;
+    [self.tweetTextView setReturnKeyType:UIReturnKeyDone];
 
 }
 
@@ -87,6 +89,24 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if(textView.text.length + (text.length - range.length) <= 140) {
+        if([text isEqualToString:@"\n"]) {
+            [textView resignFirstResponder];
+            [self onTweetButton];
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.charCountLabel.text = [@(140 - textView.text.length) stringValue];
 }
 
 @end

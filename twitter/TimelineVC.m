@@ -10,11 +10,14 @@
 #import "TweetCell.h"
 #import "TweetVC.h"
 #import "UIImageView+AFNetworking.h"
-#import "NEwTweetVC.h"
+#import "NewTweetVC.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
+#import "NSDate+TimeAgo.h"
 
 @interface TimelineVC ()
 
 @property (nonatomic, strong) NSMutableArray *tweets;
+@property (nonatomic, strong) NSString *maxId;
 
 - (void)onSignOutButton;
 - (void)onNewTweetButton;
@@ -29,7 +32,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"Twitter";
-        
+        self.tweets = [[NSMutableArray alloc] init];
         [self reload];
     }
     return self;
@@ -41,10 +44,13 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
  
     self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithTitle:@"New Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onNewTweetButton)];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf reload];
+    }];
     
     
 }
@@ -95,6 +101,9 @@
                                           success:nil
                                           failure:nil];
     
+ 
+    cell.timeTextView.text = [tweet.createdDate timeAgoSimple];
+    
     return cell;
 }
 
@@ -138,6 +147,7 @@
 
  */
 
+
 #pragma mark - Private methods
 
 - (void)onSignOutButton {
@@ -145,10 +155,15 @@
 }
 
 - (void)reload {
-    [[TwitterClient instance] homeTimelineWithCount:20 sinceId:0 maxId:0 success:^(AFHTTPRequestOperation *operation, id response) {
+    [[TwitterClient instance] homeTimelineWithCount:21 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"%@", response);
-        self.tweets = [Tweet tweetsWithArray:response];
+        NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
+        Tweet* lastTweet = (Tweet *)[newTweets lastObject];
+        self.maxId = lastTweet.id;
+        [newTweets removeLastObject]; // Hack to prevent duplication on sinceId. Can't figure out how to add 1 to this huge number.
+        [self.tweets addObjectsFromArray:newTweets];
         [self.tableView reloadData];
+        [self.tableView.infiniteScrollingView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // Do nothing
     }];

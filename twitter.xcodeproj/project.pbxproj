@@ -34,6 +34,7 @@
 		563D51F4189F93EF00DCE890 /* TweetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D51F2189F93EF00DCE890 /* TweetVC.xib */; };
 		56C9386518A09DCD00D0E4C2 /* NewTweetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C9386318A09DCD00D0E4C2 /* NewTweetVC.m */; };
 		56C9386618A09DCD00D0E4C2 /* NewTweetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C9386418A09DCD00D0E4C2 /* NewTweetVC.xib */; };
+		56DD0D2718A367AD0035D7D2 /* MPTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD0D2618A367AD0035D7D2 /* MPTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		56C9386218A09DCD00D0E4C2 /* NewTweetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTweetVC.h; sourceTree = "<group>"; };
 		56C9386318A09DCD00D0E4C2 /* NewTweetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTweetVC.m; sourceTree = "<group>"; };
 		56C9386418A09DCD00D0E4C2 /* NewTweetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewTweetVC.xib; sourceTree = "<group>"; };
+		56DD0D2518A367AD0035D7D2 /* MPTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTextView.h; sourceTree = "<group>"; };
+		56DD0D2618A367AD0035D7D2 /* MPTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTextView.m; sourceTree = "<group>"; };
 		6D8D3D6E0083406F961146BD /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		CCC1DF52D3B94E9285F4C2F7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -239,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				42CC89B617B0D7C400B6D34B /* Categories */,
+				56DD0D2518A367AD0035D7D2 /* MPTextView.h */,
+				56DD0D2618A367AD0035D7D2 /* MPTextView.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42CC89B917B0D7DD00B6D34B /* NSDictionary+CPAdditions.m in Sources */,
+				56DD0D2718A367AD0035D7D2 /* MPTextView.m in Sources */,
 				42CC89AA17B0C31900B6D34B /* SignedOutVC.m in Sources */,
 				42CC896117AF871500B6D34B /* TwitterClient.m in Sources */,
 				42CC89BF17B0F02600B6D34B /* TweetCell.m in Sources */,

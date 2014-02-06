@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewTweetVC : UIViewController
+@interface NewTweetVC : UIViewController <UITextViewDelegate>
 
 @end

@@ -10,6 +10,9 @@
 
 @implementation Tweet
 
+- (NSString *)id {
+    return [self.data valueOrNilForKeyPath:@"id_str"];
+}
 - (NSString *)text {
     return [self.data valueOrNilForKeyPath:@"text"];
 }
@@ -24,6 +27,11 @@
 }
 - (NSString *)created {
     return [self.data valueOrNilForKeyPath:@"created_at"];
+}
+- (NSDate *)createdDate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
+    return [formatter dateFromString:self.created];
 }
 - (NSString *)retweetCount {
     return [self.data valueOrNilForKeyPath:@"retweet_count"];
