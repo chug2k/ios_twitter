@@ -22,6 +22,7 @@
 - (void)onSignOutButton;
 - (void)onNewTweetButton;
 - (void)reload;
+- (void)appendNewTweet:(NSNotification *)notification;
 
 @end
 
@@ -33,9 +34,15 @@
     if (self) {
         self.title = @"Twitter";
         self.tweets = [[NSMutableArray alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appendNewTweet:) name:@"UserDidTweetNotification" object:nil];
         [self reload];
     }
     return self;
+}
+- (void)appendNewTweet:(NSNotification *)notification
+{
+    [self.tweets insertObject:notification.object atIndex:0];
+    [self reload];
 }
 
 - (void)viewDidLoad

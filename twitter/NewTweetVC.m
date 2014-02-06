@@ -49,8 +49,12 @@
 }
 - (void) onTweetButton
 {
+    
     [[TwitterClient instance] postTweet:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id response) {
+        Tweet* newTweet = [[Tweet alloc] initWithDictionary:response];
         NSLog(@"%@", response);
+        NSLog(@"%@", newTweet);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidTweetNotification" object:newTweet];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        NSLog(@"Failure %@", error);
