@@ -40,6 +40,7 @@
                                  placeholderImage:nil
                                           success:nil
                                           failure:nil];
+    self.retweetCountTextView.text = [NSString stringWithFormat:@"%d",self.tweet.retweetCount];
     
 }
 
