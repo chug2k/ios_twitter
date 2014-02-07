@@ -49,11 +49,8 @@
 }
 - (void) onTweetButton
 {
-    
-    [[TwitterClient instance] postTweet:self.tweetTextView.text success:^(AFHTTPRequestOperation *operation, id response) {
+    [[TwitterClient instance] postTweetWithReply:self.tweetTextView.text replyId:self.parentTweet.id success:^(AFHTTPRequestOperation *operation, id response) {
         Tweet* newTweet = [[Tweet alloc] initWithDictionary:response];
-        NSLog(@"%@", response);
-        NSLog(@"%@", newTweet);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserDidTweetNotification" object:newTweet];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -86,6 +83,10 @@
     self.tweetTextView.placeholderText = @"What's your status?";
     self.tweetTextView.delegate = self;
     [self.tweetTextView setReturnKeyType:UIReturnKeyDone];
+    
+    if(self.parentTweet) {
+        self.tweetTextView.text = [NSString stringWithFormat:@"%@%@", @"@", self.parentTweet.screenName];
+    }
 
 }
 

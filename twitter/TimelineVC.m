@@ -78,6 +78,15 @@
 }
 
 #pragma mark - TweetCell Delegate
+- (void)onReply:(id)sender tweet:(Tweet *)tweet
+{
+    NewTweetVC *newTweetVC = [[NewTweetVC alloc] init];
+    newTweetVC.parentTweet = tweet;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newTweetVC];
+    navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:navController animated:YES completion:nil];
+
+}
 
 - (void)onRetweet:(id)sender tweet:(Tweet *)tweet
 {
@@ -156,9 +165,6 @@
     cell.delegate = self;
     return cell;
 }
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

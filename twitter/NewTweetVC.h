@@ -10,4 +10,6 @@
 
 @interface NewTweetVC : UIViewController <UITextViewDelegate>
 
+@property (nonatomic, weak) Tweet *parentTweet;
+
 @end

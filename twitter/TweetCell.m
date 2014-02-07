@@ -13,7 +13,7 @@
 @implementation TweetCell
 
 - (IBAction)onReplyPressed:(id)sender {
-        
+    [self.delegate onReply:self tweet:self.tweet];
 }
 
 - (IBAction)onRetweetPressed:(id)sender {
