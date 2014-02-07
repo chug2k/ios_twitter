@@ -23,6 +23,7 @@
 - (void)onSignOutButton;
 - (void)onNewTweetButton;
 - (void)reload;
+- (void)reloadTop;
 - (void)appendNewTweet:(NSNotification *)notification;
 
 @end
@@ -59,6 +60,9 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf reload];
     }];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reloadTop) forControlEvents:UIControlEventValueChanged];
     
     
 }
@@ -222,6 +226,21 @@
         [self.tweets addObjectsFromArray:newTweets];
         [self.tableView reloadData];
         [self.tableView.infiniteScrollingView stopAnimating];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+- (void) reloadTop
+{
+    Tweet *firstTweet = [self.tweets objectAtIndex:0];
+    [[TwitterClient instance] homeTimelineWithCount:4 sinceId:firstTweet.id maxId:nil success:^(AFHTTPRequestOperation *operation, id response) {
+        //        NSLog(@"%@", response);
+        NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
+        [newTweets addObjectsFromArray:self.tweets];
+        self.tweets = newTweets;
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];

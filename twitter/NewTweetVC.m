@@ -85,7 +85,7 @@
     [self.tweetTextView setReturnKeyType:UIReturnKeyDone];
     
     if(self.parentTweet) {
-        self.tweetTextView.text = [NSString stringWithFormat:@"%@%@", @"@", self.parentTweet.screenName];
+        self.tweetTextView.text = self.parentTweet.screenName;
     }
 
 }
