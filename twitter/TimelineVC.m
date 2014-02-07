@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 @property (nonatomic, strong) NSString *maxId;
+@property (nonatomic, strong) NSString *minId;
 
 - (void)onSignOutButton;
 - (void)onNewTweetButton;
@@ -42,7 +43,7 @@
 - (void)appendNewTweet:(NSNotification *)notification
 {
     [self.tweets insertObject:notification.object atIndex:0];
-    [self reload];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -99,6 +100,13 @@
     }
 
     Tweet *tweet = self.tweets[indexPath.row];
+    if(tweet.retweetedStatus.id != nil) {
+        cell.retweetedTextView.text = [NSString stringWithFormat:@"%@%@", @"Retweeted by ", tweet.name];
+        tweet = tweet.retweetedStatus;
+        cell.heightConstraint.constant = 12;
+    } else {
+        cell.heightConstraint.constant = 0;
+    }
     cell.userFullNameTextView.text = tweet.name;
     cell.screenNameTextView.text = tweet.screenName;
     cell.tweetTextView.text = tweet.text;
@@ -129,7 +137,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
 												  context:nil];
     
-    return textRect.size.height + 40;
+    return textRect.size.height + 80;
 }
 
 
@@ -161,9 +169,11 @@
     [User setCurrentUser:nil];
 }
 
-- (void)reload {
+#pragma mark - Ugly code
+- (void) reload
+{
     [[TwitterClient instance] homeTimelineWithCount:21 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
-        NSLog(@"%@", response);
+//        NSLog(@"%@", response);
         NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
         Tweet* lastTweet = (Tweet *)[newTweets lastObject];
         self.maxId = lastTweet.id;

@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) NSString *created;
 @property (nonatomic, strong, readonly) NSDate *createdDate;
 @property (nonatomic, strong, readonly) NSString *retweetCount;
+@property (nonatomic, strong, readonly) Tweet *retweetedStatus;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

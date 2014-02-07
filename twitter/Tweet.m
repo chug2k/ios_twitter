@@ -36,6 +36,9 @@
 - (NSString *)retweetCount {
     return [self.data valueOrNilForKeyPath:@"retweet_count"];
 }
+- (Tweet *)retweetedStatus {
+    return [[Tweet alloc] initWithDictionary:[self.data valueOrNilForKeyPath:@"retweeted_status"]];
+}
 
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
