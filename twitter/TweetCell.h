@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
 
+@protocol TweetCellDelegate
+
+-(void)onReply:(id)sender tweet:(Tweet *)tweet;
+-(void)onRetweet:(id)sender tweet:(Tweet *)tweet;
+-(void)onFavorite:(id)sender tweet:(Tweet *)tweet;
+
+@end
+
 @interface TweetCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *userFullNameTextView;
 @property (weak, nonatomic) IBOutlet UILabel *screennameTextView;
@@ -22,5 +30,8 @@
 
 @property (weak, nonatomic) Tweet* tweet;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+
+@property (weak, nonatomic) id<TweetCellDelegate>delegate;
+
 
 @end

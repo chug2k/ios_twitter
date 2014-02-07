@@ -77,6 +77,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TweetCell Delegate
+
+- (void)onRetweet:(id)sender tweet:(Tweet *)tweet
+{
+    TweetCell *cell = ((TweetCell *)sender);
+    if(tweet.retweeted) {
+        [[TwitterClient instance] destroyTweet:tweet.retweetId success:^(AFHTTPRequestOperation *operation, id response) {
+            NSLog(@"%@", response);
+            cell.retweetButton.backgroundColor = [UIColor clearColor];
+            [tweet setRetweetedValue:NO];
+            [tweet setRetweetId: nil];
+            [tweet decrementRetweetCount];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    } else {
+        [[TwitterClient instance] postRetweet:tweet.id success:^(AFHTTPRequestOperation *operation, id response) {
+            NSLog(@"%@", response);
+            cell.retweetButton.backgroundColor = [UIColor greenColor];
+            [tweet setRetweetedValue:YES];
+            [tweet setRetweetId: response[@"id_str"]];
+            [tweet incrementRetweetCount];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -124,6 +153,7 @@
  
     cell.timeTextView.text = [tweet.createdDate timeAgoSimple];
     
+    cell.delegate = self;
     return cell;
 }
 

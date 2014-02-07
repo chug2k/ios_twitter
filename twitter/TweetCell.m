@@ -8,31 +8,17 @@
 
 #import "TweetCell.h"
 #import "TwitterClient.h"
+#import "NewTweetVC.h"
 
 @implementation TweetCell
-- (IBAction)onRetweetPressed:(id)sender {
-    if(self.tweet.retweeted) {
-        [[TwitterClient instance] destroyTweet:self.tweet.retweetId success:^(AFHTTPRequestOperation *operation, id response) {
-            NSLog(@"%@", response);
-            self.retweetButton.backgroundColor = [UIColor clearColor];
-            [self.tweet setRetweetedValue:NO];
-            [self.tweet setRetweetId: nil];
-            [self.tweet decrementRetweetCount];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", error);
-        }];
-    } else {
-        [[TwitterClient instance] postRetweet:self.tweet.id success:^(AFHTTPRequestOperation *operation, id response) {
-            NSLog(@"%@", response);
-            self.retweetButton.backgroundColor = [UIColor greenColor];
-            [self.tweet setRetweetedValue:YES];
-            [self.tweet setRetweetId: response[@"id_str"]];
-            [self.tweet incrementRetweetCount];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", error);
-        }];
-    }
+
+- (IBAction)onReplyPressed:(id)sender {
+        
 }
+
+- (IBAction)onRetweetPressed:(id)sender {
+    [self.delegate onRetweet:self tweet:self.tweet];
+  }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
