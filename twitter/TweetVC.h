@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextView;
 @property (weak, nonatomic) IBOutlet UILabel *timestampTextView;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountTextView;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteCountTextView;
 
 @end

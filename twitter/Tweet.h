@@ -18,14 +18,21 @@
 @property (nonatomic, strong, readonly) NSString *created;
 @property (nonatomic, strong, readonly) NSDate *createdDate;
 @property (readonly) int retweetCount;
+@property (readonly) int favoriteCount;
+
 @property (nonatomic, strong, readonly) Tweet *retweetedStatus;
 @property (nonatomic, strong) NSString *retweetId;
 
 @property (nonatomic) BOOL retweeted;
+@property (nonatomic) BOOL favorited;
 
 -(void) setRetweetedValue:(BOOL)val;
 -(void) incrementRetweetCount;
 -(void) decrementRetweetCount;
+-(void) setFavoritedValue:(BOOL)val;
+-(void) incrementFavoriteCount;
+-(void) decrementFavoriteCount;
+
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

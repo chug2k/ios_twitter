@@ -19,6 +19,9 @@
 - (IBAction)onRetweetPressed:(id)sender {
     [self.delegate onRetweet:self tweet:self.tweet];
   }
+- (IBAction)onFavoritePressed:(id)sender {
+    [self.delegate onFavorite:self tweet:self.tweet];
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

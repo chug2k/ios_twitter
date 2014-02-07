@@ -118,6 +118,23 @@
     }
 }
 
+- (void)onFavorite:(id)sender tweet:(Tweet *)tweet
+{
+    TweetCell *cell = ((TweetCell *)sender);
+    if(tweet.favorited) {
+//        [[TwitterClient instance] favoriteTweet:tweet.retweetId success:^(AFHTTPRequestOperation *operation, id response) {
+//            cell.retweetButton.backgroundColor = [UIColor greenColor];
+//            [tweet setFavoritedValue:YES];
+//            [tweet incrementFavoriteCount];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"%@", error);
+//        }];
+
+    } else {
+        
+    }
+}
+
 
 #pragma mark - Table view data source
 

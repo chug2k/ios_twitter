@@ -37,14 +37,20 @@
 - (int)retweetCount {
     return [[self.data valueOrNilForKeyPath:@"retweet_count"]intValue];
 }
+- (int)favoriteCount {
+    return [[self.data valueOrNilForKeyPath:@"favorite_count"]intValue];
+}
 
 - (Tweet *)retweetedStatus {
     return [[Tweet alloc] initWithDictionary:[self.data valueOrNilForKeyPath:@"retweeted_status"]];
 }
 - (BOOL)retweeted {
-    return [[self.data valueOrNilForKeyPath:@"retweeted"]boolValue];
+    return [[self.data valueOrNilForKeyPath:@"retweeted"]
+            boolValue];
 }
-
+- (BOOL)favorited {
+    return [[self.data valueOrNilForKeyPath:@"favorited"]boolValue];
+}
 
 - (void)incrementRetweetCount {
     int count = self.retweetCount;
@@ -60,6 +66,22 @@
 {
     [self.data setValue:@(val) forKeyPath:@"retweeted"];
 }
+- (void) setFavoritedValue:(BOOL)val
+{
+    [self.data setValue:@(val) forKeyPath:@"favorited"];
+}
+
+- (void)incrementFavoriteCount {
+    int count = self.favoriteCount;
+    count++;
+    [self.data setValue:@(count) forKeyPath:@"favorite_count"];
+}
+- (void)decrementFavoriteCount {
+    int count = self.favoriteCount;
+    count--;
+    [self.data setValue:@(count) forKeyPath:@"favorite"];
+}
+
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];

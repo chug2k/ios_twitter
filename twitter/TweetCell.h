@@ -33,5 +33,6 @@
 
 @property (weak, nonatomic) id<TweetCellDelegate>delegate;
 
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @end

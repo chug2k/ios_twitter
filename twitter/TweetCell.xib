@@ -85,6 +85,9 @@
                         <state key="normal" image="29-heart.png">
                             <color key="titleShadowColor" red="0.19737370169999999" green="1" blue="0.18219776979999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onFavoritePressed:" destination="2Vm-kX-tc2" eventType="touchUpInside" id="HKw-GL-Xph"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aex-P2-HnB">
                         <rect key="frame" x="123" y="75" width="27" height="17"/>
@@ -130,6 +133,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="favoriteButton" destination="awh-ub-UbO" id="fZD-ar-8Mm"/>
                 <outlet property="heightConstraint" destination="Y7x-SU-fbP" id="Acj-1n-AoA"/>
                 <outlet property="profileImageView" destination="VdE-Cj-8YI" id="DcX-pl-Nqo"/>
                 <outlet property="retweetButton" destination="aex-P2-HnB" id="2Mv-Jk-Hsr"/>

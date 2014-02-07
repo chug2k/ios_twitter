@@ -21,7 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Tweet!";
+        self.title = @"Tweet Detailz";
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     return self;
@@ -41,7 +41,7 @@
                                           success:nil
                                           failure:nil];
     self.retweetCountTextView.text = [NSString stringWithFormat:@"%d",self.tweet.retweetCount];
-    
+    self.favoriteCountTextView.text = [NSString stringWithFormat:@"%d",self.tweet.favoriteCount];
 }
 
 - (void)didReceiveMemoryWarning
