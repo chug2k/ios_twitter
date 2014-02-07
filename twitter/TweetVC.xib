@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetVC">
             <connections>
+                <outlet property="favoriteButton" destination="1Z4-rX-38f" id="cKC-bO-BY3"/>
                 <outlet property="favoriteCountTextView" destination="sWM-wl-bhN" id="DYK-Tp-MMZ"/>
+                <outlet property="replyButton" destination="HYR-Rv-AdB" id="v1e-s8-cuT"/>
+                <outlet property="retweetButton" destination="cNn-VA-rRk" id="YbC-QH-TCo"/>
                 <outlet property="retweetCountTextView" destination="dJl-Ve-Jg6" id="rnj-kR-QYY"/>
                 <outlet property="timestampTextView" destination="Xwj-z6-CmE" id="yeV-1F-nFU"/>
                 <outlet property="tweetTextView" destination="4GX-1x-ZpX" id="ia4-Jw-dBQ"/>
@@ -68,6 +71,14 @@
                         <constraint firstAttribute="height" constant="2" id="1sS-5J-CDh"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdI-Jf-TC3">
+                    <rect key="frame" x="15" y="154" width="289" height="2"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="VKv-xJ-1Xs"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJl-Ve-Jg6">
                     <rect key="frame" x="15" y="134" width="21" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,6 +89,7 @@
                     <rect key="frame" x="39" y="134" width="48" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWM-wl-bhN">
@@ -90,17 +102,52 @@
                     <rect key="frame" x="126" y="134" width="48" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYR-Rv-AdB">
+                    <rect key="frame" x="15" y="164" width="32" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="03-loopback.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onReplyPressed:" destination="-1" eventType="touchUpInside" id="5th-3y-k56"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNn-VA-rRk">
+                    <rect key="frame" x="62" y="164" width="28" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="05-shuffle.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onRetweetPressed:" destination="-1" eventType="touchUpInside" id="HRA-Lh-i6J"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z4-rX-38f">
+                    <rect key="frame" x="108" y="164" width="24" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="29-heart.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onFavoritePressed:" destination="-1" eventType="touchUpInside" id="tld-LH-1C0"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Aex-FY-8ht" firstAttribute="leading" secondItem="dJl-Ve-Jg6" secondAttribute="trailing" constant="3" id="0PM-SM-V7H"/>
                 <constraint firstAttribute="trailing" secondItem="py4-HB-LkA" secondAttribute="trailing" constant="15" id="585-9p-Qdi"/>
                 <constraint firstItem="unT-RR-jHN" firstAttribute="leading" secondItem="TNz-q6-pr6" secondAttribute="trailing" constant="10" id="66i-b0-VeN"/>
+                <constraint firstItem="LdI-Jf-TC3" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="6HD-kf-wTQ"/>
                 <constraint firstItem="dJl-Ve-Jg6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="6nl-jH-TQZ"/>
+                <constraint firstItem="1Z4-rX-38f" firstAttribute="leading" secondItem="cNn-VA-rRk" secondAttribute="trailing" constant="18" id="7fx-md-dTB"/>
+                <constraint firstItem="HYR-Rv-AdB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="Ad5-Ql-dCx"/>
                 <constraint firstItem="dJl-Ve-Jg6" firstAttribute="baseline" secondItem="Aex-FY-8ht" secondAttribute="baseline" id="BPb-0D-HTl"/>
                 <constraint firstItem="sWM-wl-bhN" firstAttribute="baseline" secondItem="jVW-Hx-8t0" secondAttribute="baseline" id="BY5-uz-inF"/>
+                <constraint firstItem="LdI-Jf-TC3" firstAttribute="top" secondItem="jVW-Hx-8t0" secondAttribute="bottom" constant="5" id="ELf-wD-jYA"/>
                 <constraint firstItem="4GX-1x-ZpX" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="F0d-tf-J7Q"/>
                 <constraint firstItem="4GX-1x-ZpX" firstAttribute="top" secondItem="TNz-q6-pr6" secondAttribute="bottom" constant="10" id="FcX-Cq-2EE"/>
                 <constraint firstItem="6sX-oV-Pz5" firstAttribute="leading" secondItem="TNz-q6-pr6" secondAttribute="trailing" constant="10" id="IoX-Y1-RWX"/>
@@ -109,12 +156,17 @@
                 <constraint firstAttribute="trailing" secondItem="4GX-1x-ZpX" secondAttribute="trailing" constant="15" id="Oha-WC-C0t"/>
                 <constraint firstItem="unT-RR-jHN" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="Ooy-Py-3sf"/>
                 <constraint firstItem="dJl-Ve-Jg6" firstAttribute="top" secondItem="py4-HB-LkA" secondAttribute="bottom" constant="5" id="POe-3s-ycP"/>
+                <constraint firstItem="HYR-Rv-AdB" firstAttribute="top" secondItem="LdI-Jf-TC3" secondAttribute="bottom" constant="8" id="QB2-N7-Mcg"/>
                 <constraint firstItem="TNz-q6-pr6" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="RR6-8G-Hcn"/>
                 <constraint firstItem="TNz-q6-pr6" firstAttribute="top" secondItem="1" secondAttribute="top" constant="15" id="WGj-IM-4yI"/>
                 <constraint firstItem="sWM-wl-bhN" firstAttribute="baseline" secondItem="Aex-FY-8ht" secondAttribute="baseline" id="Xj1-n8-sOS"/>
                 <constraint firstItem="sWM-wl-bhN" firstAttribute="leading" secondItem="Aex-FY-8ht" secondAttribute="trailing" constant="15" id="Ziu-XH-ZvL"/>
+                <constraint firstItem="1Z4-rX-38f" firstAttribute="centerY" secondItem="HYR-Rv-AdB" secondAttribute="centerY" id="dDj-g7-Z5c"/>
                 <constraint firstItem="jVW-Hx-8t0" firstAttribute="leading" secondItem="sWM-wl-bhN" secondAttribute="trailing" constant="3" id="gUQ-Q7-1uA"/>
+                <constraint firstItem="1Z4-rX-38f" firstAttribute="centerY" secondItem="cNn-VA-rRk" secondAttribute="centerY" id="h1N-SP-hhz"/>
+                <constraint firstItem="cNn-VA-rRk" firstAttribute="leading" secondItem="HYR-Rv-AdB" secondAttribute="trailing" constant="15" id="htY-sU-M4K"/>
                 <constraint firstItem="6sX-oV-Pz5" firstAttribute="top" secondItem="unT-RR-jHN" secondAttribute="bottom" constant="1" id="mpL-iz-Rxm"/>
+                <constraint firstAttribute="trailing" secondItem="LdI-Jf-TC3" secondAttribute="trailing" constant="16" id="ph0-jV-HAF"/>
                 <constraint firstItem="Xwj-z6-CmE" firstAttribute="leading" secondItem="4GX-1x-ZpX" secondAttribute="leading" id="qB4-BY-Bwh"/>
                 <constraint firstItem="py4-HB-LkA" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="15" id="zuz-aM-k8d"/>
             </constraints>
@@ -122,4 +174,9 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="03-loopback.png" width="32" height="22"/>
+        <image name="05-shuffle.png" width="28" height="20"/>
+        <image name="29-heart.png" width="24" height="21"/>
+    </resources>
 </document>

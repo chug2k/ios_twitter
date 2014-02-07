@@ -90,6 +90,18 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     NSString* url = [NSString stringWithFormat:@"%@%@%@", @"1.1/statuses/destroy/", tweetId, @".json"];
     [self postPath:url parameters:nil success:success failure:failure];
 }
+- (void)favoriteTweet:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString* url = @"1.1/favorites/create.json";
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetId}];
+    [self postPath:url parameters:params success:success failure:failure];
+}
+- (void)destroyFavorite:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString* url = @"1.1/favorites/destroy.json";
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetId}];
+    [self postPath:url parameters:params success:success failure:failure];
+}
 
 
 #pragma mark - Private methods

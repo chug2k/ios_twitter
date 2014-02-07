@@ -79,7 +79,7 @@
 - (void)decrementFavoriteCount {
     int count = self.favoriteCount;
     count--;
-    [self.data setValue:@(count) forKeyPath:@"favorite"];
+    [self.data setValue:@(count) forKeyPath:@"favorite_count"];
 }
 
 

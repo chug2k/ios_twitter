@@ -37,9 +37,14 @@
         self.title = @"Twitter";
         self.tweets = [[NSMutableArray alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appendNewTweet:) name:@"UserDidTweetNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"UserDidTakeActionNotification" object:nil];
         [self reload];
     }
     return self;
+}
+- (void) reloadData
+{
+    [self.tableView reloadData];
 }
 - (void)appendNewTweet:(NSNotification *)notification
 {
@@ -122,16 +127,23 @@
 {
     TweetCell *cell = ((TweetCell *)sender);
     if(tweet.favorited) {
-//        [[TwitterClient instance] favoriteTweet:tweet.retweetId success:^(AFHTTPRequestOperation *operation, id response) {
-//            cell.retweetButton.backgroundColor = [UIColor greenColor];
-//            [tweet setFavoritedValue:YES];
-//            [tweet incrementFavoriteCount];
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"%@", error);
-//        }];
-
+        [[TwitterClient instance] destroyFavorite:tweet.id success:^(AFHTTPRequestOperation *operation, id response) {
+            cell.favoriteButton.backgroundColor = [UIColor clearColor];
+            [tweet setFavoritedValue:NO];
+            [tweet decrementFavoriteCount];
+            NSLog(@"Decrementing favorite count");
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
     } else {
-        
+        [[TwitterClient instance] favoriteTweet:tweet.id success:^(AFHTTPRequestOperation *operation, id response) {
+            cell.favoriteButton.backgroundColor = [UIColor redColor];
+            [tweet setFavoritedValue:YES];
+            [tweet incrementFavoriteCount];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
+
     }
 }
 
@@ -170,6 +182,9 @@
     }
     if(tweet.retweeted) {
         cell.retweetButton.backgroundColor = [UIColor greenColor];
+    }
+    if(tweet.favorited) {
+        cell.favoriteButton.backgroundColor = [UIColor redColor];
     }
     cell.userFullNameTextView.text = tweet.name;
     cell.screenNameTextView.text = tweet.screenName;
@@ -234,7 +249,7 @@
 #pragma mark - Ugly code
 - (void) reload
 {
-    [[TwitterClient instance] homeTimelineWithCount:4 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
+    [[TwitterClient instance] homeTimelineWithCount:21 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"%@", response);
         NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
         Tweet* lastTweet = (Tweet *)[newTweets lastObject];
@@ -250,7 +265,7 @@
 - (void) reloadTop
 {
     Tweet *firstTweet = [self.tweets objectAtIndex:0];
-    [[TwitterClient instance] homeTimelineWithCount:4 sinceId:firstTweet.id maxId:nil success:^(AFHTTPRequestOperation *operation, id response) {
+    [[TwitterClient instance] homeTimelineWithCount:20 sinceId:firstTweet.id maxId:nil success:^(AFHTTPRequestOperation *operation, id response) {
         //        NSLog(@"%@", response);
         NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
         [newTweets addObjectsFromArray:self.tweets];
