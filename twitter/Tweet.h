@@ -17,8 +17,15 @@
 @property (nonatomic, strong, readonly) NSString *profileImageURL;
 @property (nonatomic, strong, readonly) NSString *created;
 @property (nonatomic, strong, readonly) NSDate *createdDate;
-@property (nonatomic, strong, readonly) NSString *retweetCount;
+@property (readonly) int retweetCount;
 @property (nonatomic, strong, readonly) Tweet *retweetedStatus;
+@property (nonatomic, strong) NSString *retweetId;
+
+@property (nonatomic) BOOL retweeted;
+
+-(void) setRetweetedValue:(BOOL)val;
+-(void) incrementRetweetCount;
+-(void) decrementRetweetCount;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

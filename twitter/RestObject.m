@@ -12,7 +12,7 @@
 
 - (id)initWithDictionary:(NSDictionary *)data {
     if (self = [super init]) {
-        _data = data;
+        _data = [data mutableCopy];
     }
     
     return self;

@@ -67,17 +67,30 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
 
 - (void)postTweet:(NSString *)tweetText success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    [self postTweetWithReply:tweetText replyId:-1 success:success failure:failure];
+    [self postTweetWithReply:tweetText replyId:nil success:success failure:failure];
 }
 
-- (void)postTweetWithReply:(NSString *)tweetText replyId:(int)replyId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+- (void)postTweetWithReply:(NSString *)tweetText replyId:(NSString *)replyId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"status": tweetText}];
-    if (replyId > 0) {
-        [params setObject:@(replyId) forKey:@"in_reply_to_status_id"];
+    if (replyId) {
+        [params setObject:replyId
+                   forKey:@"in_reply_to_status_id"];
     }
     [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
 }
+
+- (void)postRetweet:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString* url = [NSString stringWithFormat:@"%@%@%@", @"1.1/statuses/retweet/", tweetId, @".json"];
+    [self postPath:url parameters:nil success:success failure:failure];
+}
+- (void)destroyTweet:(NSString *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString* url = [NSString stringWithFormat:@"%@%@%@", @"1.1/statuses/destroy/", tweetId, @".json"];
+    [self postPath:url parameters:nil success:success failure:failure];
+}
+
 
 #pragma mark - Private methods
 

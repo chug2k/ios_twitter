@@ -12,7 +12,7 @@
 
 - (id)initWithDictionary:(NSDictionary *)data;
 
-@property (nonatomic, strong) NSDictionary *data;
+@property (nonatomic, strong) NSMutableDictionary *data;
 
 @end
 

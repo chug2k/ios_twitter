@@ -100,12 +100,17 @@
     }
 
     Tweet *tweet = self.tweets[indexPath.row];
-    if(tweet.retweetedStatus.id != nil) {
+    cell.tweet = tweet;
+    
+    if(tweet.retweetedStatus.id) {
         cell.retweetedTextView.text = [NSString stringWithFormat:@"%@%@", @"Retweeted by ", tweet.name];
         tweet = tweet.retweetedStatus;
         cell.heightConstraint.constant = 12;
     } else {
         cell.heightConstraint.constant = 0;
+    }
+    if(tweet.retweeted) {
+        cell.retweetButton.backgroundColor = [UIColor greenColor];
     }
     cell.userFullNameTextView.text = tweet.name;
     cell.screenNameTextView.text = tweet.screenName;
@@ -137,7 +142,7 @@
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
 												  context:nil];
     
-    return textRect.size.height + 80;
+    return textRect.size.height + 70;
 }
 
 
@@ -172,7 +177,7 @@
 #pragma mark - Ugly code
 - (void) reload
 {
-    [[TwitterClient instance] homeTimelineWithCount:21 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
+    [[TwitterClient instance] homeTimelineWithCount:4 sinceId:nil maxId:self.maxId success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"%@", response);
         NSMutableArray* newTweets = [Tweet tweetsWithArray:response];
         Tweet* lastTweet = (Tweet *)[newTweets lastObject];
@@ -182,7 +187,7 @@
         [self.tableView reloadData];
         [self.tableView.infiniteScrollingView stopAnimating];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // Do nothing
+        NSLog(@"%@", error);
     }];
 }
 

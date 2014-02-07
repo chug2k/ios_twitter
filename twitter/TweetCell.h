@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
 
 @interface TweetCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *userFullNameTextView;
@@ -18,4 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *retweetedTextView;
 
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextView;
+
+@property (weak, nonatomic) Tweet* tweet;
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+
 @end

@@ -33,13 +33,32 @@
     [formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
     return [formatter dateFromString:self.created];
 }
-- (NSString *)retweetCount {
-    return [self.data valueOrNilForKeyPath:@"retweet_count"];
+- (int)retweetCount {
+    return [[self.data valueOrNilForKeyPath:@"retweet_count"]intValue];
 }
+
 - (Tweet *)retweetedStatus {
     return [[Tweet alloc] initWithDictionary:[self.data valueOrNilForKeyPath:@"retweeted_status"]];
 }
+- (BOOL)retweeted {
+    return [[self.data valueOrNilForKeyPath:@"retweeted"]boolValue];
+}
 
+
+- (void)incrementRetweetCount {
+    int count = self.retweetCount;
+    count++;
+    [self.data setValue:@(count) forKeyPath:@"retweet_count"];
+}
+- (void)decrementRetweetCount {
+    int count = self.retweetCount;
+    count--;
+    [self.data setValue:@(count) forKeyPath:@"retweet_count"];
+}
+- (void) setRetweetedValue:(BOOL)val
+{
+    [self.data setValue:@(val) forKeyPath:@"retweeted"];
+}
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [[NSMutableArray alloc] initWithCapacity:array.count];

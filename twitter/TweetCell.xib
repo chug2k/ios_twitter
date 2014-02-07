@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Michael Moran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1V-Vu-IiQ">
-                        <rect key="frame" x="65" y="27" width="84" height="16"/>
+                        <rect key="frame" x="65" y="22" width="84" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="cmz-wI-eWR"/>
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijp-vK-fKG">
-                        <rect key="frame" x="289" y="28" width="21" height="15"/>
+                        <rect key="frame" x="289" y="23" width="21" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,14 +39,14 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-Zu-UjI">
-                        <rect key="frame" x="156" y="28" width="31" height="15"/>
+                        <rect key="frame" x="156" y="23" width="31" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="245" translatesAutoresizingMaskIntoConstraints="NO" id="88s-NJ-NrN">
-                        <rect key="frame" x="65" y="45" width="245" height="25"/>
+                        <rect key="frame" x="65" y="40" width="245" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
@@ -93,6 +93,9 @@
                         <state key="normal" image="05-shuffle.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onRetweetPressed:" destination="2Vm-kX-tc2" eventType="touchUpInside" id="fE2-mP-clK"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -107,6 +110,7 @@
                     <constraint firstItem="Xjs-3h-TWe" firstAttribute="top" secondItem="kT1-fa-sRV" secondAttribute="top" constant="5" id="OCA-qc-0iF"/>
                     <constraint firstItem="aex-P2-HnB" firstAttribute="leading" secondItem="zah-Tv-Oop" secondAttribute="trailing" constant="30" id="SAx-IH-vZb"/>
                     <constraint firstItem="88s-NJ-NrN" firstAttribute="leading" secondItem="kT1-fa-sRV" secondAttribute="leading" constant="65" id="SC1-VT-abx"/>
+                    <constraint firstItem="e1V-Vu-IiQ" firstAttribute="top" secondItem="VdE-Cj-8YI" secondAttribute="top" id="Sty-Fh-FJQ"/>
                     <constraint firstItem="88s-NJ-NrN" firstAttribute="top" secondItem="e1V-Vu-IiQ" secondAttribute="bottom" constant="2" id="UIl-Sj-Pnu"/>
                     <constraint firstItem="XQy-Zu-UjI" firstAttribute="baseline" secondItem="e1V-Vu-IiQ" secondAttribute="baseline" id="UXh-Yr-rkT"/>
                     <constraint firstAttribute="bottom" secondItem="zah-Tv-Oop" secondAttribute="bottom" constant="5" id="Vth-8I-Zhn"/>
@@ -120,12 +124,12 @@
                     <constraint firstAttribute="trailing" secondItem="Xjs-3h-TWe" secondAttribute="trailing" constant="5" id="pY8-0e-cpB"/>
                     <constraint firstItem="awh-ub-UbO" firstAttribute="bottom" secondItem="aex-P2-HnB" secondAttribute="bottom" id="uhC-bu-LSr"/>
                     <constraint firstItem="XQy-Zu-UjI" firstAttribute="baseline" secondItem="e1V-Vu-IiQ" secondAttribute="baseline" id="w1t-6W-71U"/>
-                    <constraint firstItem="e1V-Vu-IiQ" firstAttribute="top" secondItem="Xjs-3h-TWe" secondAttribute="bottom" constant="10" id="za6-I4-h7Y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="heightConstraint" destination="Y7x-SU-fbP" id="Acj-1n-AoA"/>
                 <outlet property="profileImageView" destination="VdE-Cj-8YI" id="DcX-pl-Nqo"/>
+                <outlet property="retweetButton" destination="aex-P2-HnB" id="2Mv-Jk-Hsr"/>
                 <outlet property="retweetedTextView" destination="Xjs-3h-TWe" id="uxy-ay-2Qv"/>
                 <outlet property="screenNameTextView" destination="XQy-Zu-UjI" id="Uvy-TT-TPd"/>
                 <outlet property="timeTextView" destination="ijp-vK-fKG" id="9Ah-7l-kVh"/>
